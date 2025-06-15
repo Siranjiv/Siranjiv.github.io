@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Siranjiv Sivapalan's Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+	.video-container {
+		position: relative;
+		padding-bottom: 56.25%;
+		height: 0;
+		overflow: hidden;
+		max-width: 100%;
+	}
+	.video-container iframe,
+	.video-container video {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+  </style>
+	</head>
+<script>
+	const images = ["images/a.png", "images/b.png", "images/c.png"];
+	let currentIndex = 0;
+
+	function cycleImage(event) {
+		event.preventDefault(); // <-- Prevent the page from refreshing
+
+		const img = event.currentTarget.querySelector("img");
+		currentIndex = (currentIndex + 1) % images.length;
+		img.src = images[currentIndex];
+	}
+	
+</script>
+
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Siranjiv Sivapalan's<br />
+						Portfolio</h1>
+						<p>Game Developer | Software Engineer | USC Graduate Student <br>
+Crafting interactive experiences through code and creativity.</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a class="logo">Siranjiv Sivapalan</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a >Projects</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/ssiranjiv/" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
+							<li><a href="https://github.com/Siranjiv" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<h2><a>About Me<br />
+									</a></h2>
+									<p>I’m Siranjiv Sivapalan, a software engineer and game developer based in Los Angeles, currently pursuing my Master’s in Computer Science (Game Development) at the University of Southern California. Prior to graduate school, I worked as a software engineer focusing on full-stack development using the ASP.NET framework building and maintaining end-to-end web applications and Windows applications in WinForms.</p>
+									<p>With a strong foundation in programming and a passion for games and interactive media, I enjoy creating systems that blend logic, creativity, and user experience. My portfolio spans gameplay mechanics, animation programming, and data-driven visualizations, including graph-based projects. Whether working independently or on a team, I take pride in writing clean, efficient code and continuously growing as a developer.</p>
+								</header>
+								<a class="image main"><img src="images/Portfolio website.png" alt="" /></a>
+								<!-- <ul class="actions special">
+									<li><a href="#" class="button large">View Project</a></li>
+								</ul> -->
+							</article>
+
+						<!-- Posts -->
+							<section class="posts">
+								<article>
+									<header>
+										<h2><a>A 2D Game with Computer Vision & Voice Control</a></h2>
+									</header>
+									<a class="image fit"><img src="images/_input.gif" alt="" /></a>
+									<p>This was the first game I ever developed an individual undergraduate research project focused on accessibility in games. Designed with the goal of supporting players with physical disabilities, the game replaced traditional input methods with voice recognition and computer vision. Built using Unity, C#, and OpenCV, it allowed players to interact using head movements and voice commands. The project not only sparked my passion for game development, but also deepened my commitment to creating inclusive and innovative play experiences.</p>
+									<!-- <ul class="actions special">
+										<li><a href="#" class="button">View Project</a></li>
+									</ul> -->
+								</article>
+								<article>
+									<header>
+										<h2><a>Custom 3D Renderer in C/C++ <br>(Click the Image Below)</a></h2>
+									</header>
+									<a href="#" class="image fit" onclick="cycleImage(event)">
+										<img src="images/a.png" alt="Project Image" id="cycle-img" style="width: 256px; height: 256px; image-rendering: crisp-edges; display: block; margin: 0 auto;" />
+									</a>
+									<p>As part of my 3D Graphics and Rendering course, I developed a custom 3D renderer from scratch using C and C++. This solo project deepened my understanding of the graphics pipeline, including transformations, shading, and rasterization. I implemented core techniques without relying on modern graphics APIs constructing everything from projection math to triangle rasterization manually.
+										<br><br>
+										The images displayed here were all rendered by my engine, and you can click them to cycle through the outputs. This project was a major milestone in building my low-level graphics skills and gave me confidence in creating rendering systems from the ground up.
+									</p>
+									<!-- <ul class="actions special">
+											<li><a href="#" class="button">View Project</a></li>
+									</ul> -->
+								</article>
+								<article>
+									<header>
+										<h2><a>Now Hiring: Shadow Government — Game Design Workshop Project</a></h2>
+									</header>
+									<div class="video-container">
+										  <iframe src="https://www.youtube.com/embed/V4zgUXjrfdE"
+										         title="YouTube video player"
+													frameborder="0"
+														 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+											 allowfullscreen>
+										 </iframe>
+									</div>
+									<p>This group project was part of USC’s Game Design Workshop course, where we created Now Hiring: Shadow Government, a party card game built around humor, debate, and storytelling. Working closely with my team, I contributed to designing game mechanics, writing card content, and conducting multiple rounds of playtesting. Through this project, I learned how to iterate based on player feedback, balance mechanics for different play styles, and design for social interaction. It also taught me how to collaborate effectively in a creative team and how to communicate design ideas clearly through prototypes and presentations.</p>
+									<!-- <ul class="actions special">
+										<li><a href="#" class="button">View Project</a></li>
+									</ul> -->
+								</article>
+								<article>
+									<header>
+										<h2><a>Jello Cube Simulation</a></h2>
+									</header>
+									<a class="image fit"><img src="images/Jello.gif" alt="" /></a>
+									<p>
+									As part of my Computer Animation and Simulation course, I developed a physics-based simulation of a Jello Cube using a mass-spring system in C++ with OpenGL for visualization. The simulation models an 8×8×8 grid of mass points connected by structural, shear, and bend springs, and incorporates damping and external force fields. I implemented both explicit Euler and Runge-Kutta 4th order (RK4) integration methods to explore numerical stability in dynamic systems.
+									</p>
+									<p>
+									This project taught me how to simulate soft-body dynamics using Newtonian physics and Hooke’s Law, as well as how to handle real-time collisions using a spring penalty approach. I also added extra features such as collision with an internal cube and rendered the simulation within a Cornell Box environment for better visual clarity. Through this work, I gained a deeper understanding of numerical integrators, collision response, and the challenges of real-time physical simulation in animation.
+									</p>
+									<!-- <ul class="actions special">
+										<li><a href="#" class="button">View Project</a></li>
+									</ul> -->
+								</article>
+								<article>
+									<header>
+										<h2><a >Motion Capture Interpolation</a></h2>
+									</header>
+									<a class="image fit"><img src="images/MotionCapture.gif" alt="" /></a>
+									<p>
+									As part of the Computer Animation and Simulation course, I developed a motion capture interpolation system in C++ and OpenGL that processes skeleton data (ASF) and motion data (AMC) to generate smooth intermediate animations. The system supports four interpolation methods: Linear Euler, Bezier Euler (via de Casteljau’s algorithm), Linear Quaternion (SLERP), and Bezier Quaternion. The results are saved to a new AMC file and visualized in an OpenGL based mocap player, with original motion shown in red and interpolated motion in green.
+									</p>
+									<p>
+									This project deepened my understanding of animation interpolation techniques, the differences between Euler angles and quaternions, and the implementation of real-time skeletal visualization. It strengthened my grasp of key concepts in motion data processing and animation systems.
+									</p>
+									<!-- <ul class="actions special">
+										<li><a href="#" class="button">View Project</a></li>
+									</ul> -->
+								</article>
+								<article>
+									<header>
+										<h2><a >Inverse Kinematics with Skinning</a></h2>
+									</header>
+									<a class="image fit"><img src="images/IK.gif" alt="" /></a>
+									<p>
+									As part of the Computer Animation and Simulation course, I developed an inverse kinematics (IK) system integrated with mesh skinning using C++ and OpenGL. Built on a forward kinematics (FK) foundation, the project allows real-time animation of a deformable character mesh by manipulating joint transformations. It supports Damped Least Squares (DLS) IK and Linear Blend Skinning (LBS) as core features.
+									</p>
+									<p>
+									For added flexibility, I implemented multiple IK solvers (DLS, Pseudoinverse, and DLS_ALT) with recursive subdivision for smoother handle movements. The system also supports switching between Linear Blend and Dual Quaternion Skinning to compare deformation results. Additional features include interactive keyboard controls and frame-by-frame screenshot capture for recording animations.
+									</p>
+									<p>
+									This project deepened my understanding of real-time character animation, skeletal deformation techniques, and matrix/quaternion transformations—providing hands-on experience with the mathematical and visual aspects of animation systems.
+									</p>
+									<!-- <ul class="actions special">
+										<li><a href="#" class="button">View Project</a></li>
+									</ul> -->
+								</article>
+							</section>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						
+						<section class="split contact">
+							<section>
+								<h3>Email</h3>
+								<p><a>siranjiv@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.linkedin.com/in/ssiranjiv/" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
+									<li><a href="https://github.com/Siranjiv" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<!-- <div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div> -->
+					<div>
+						<ul><br></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
