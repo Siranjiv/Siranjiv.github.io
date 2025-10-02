@@ -75,6 +75,13 @@
 	/* Accent the Resume icon to make it stand out */
 	.icons .resume { color: #ff5a5f; border: 1px solid rgba(255,90,95,0.5); border-radius: 100%; box-shadow: 0 0 0 2px rgba(255,90,95,0.15); }
 	.icons .resume:hover { color: #fff; background: #ff5a5f; border-color: #ff5a5f; }
+
+	/* Make About hero image smaller, centered, with spacing below */
+	.image.main.about-hero { max-width: 720px; width: 100%; margin: 0 auto 2rem; display: block; }
+	.about-hero img { width: 100%; height: auto; }
+
+	/* Make bottom button inside Projects span full width of the grid */
+	.posts > article.full { flex: 0 0 100%; width: 100%; }
   </style>
 	</head>
 <!-- custom scripts are included at the end of body for valid structure -->
@@ -128,10 +135,7 @@ Crafting interactive experiences through code and creativity.</p>
 									<p>I’m Siranjiv Sivapalan, a software engineer and game developer based in Los Angeles, currently pursuing my Master’s in Computer Science (Game Development) at the University of Southern California. Prior to graduate school, I worked as a software engineer focusing on full-stack development using the ASP.NET framework building and maintaining end-to-end web applications and Windows applications in WinForms.</p>
 									<p>With a strong foundation in programming and a passion for games and interactive media, I enjoy creating systems that blend logic, creativity, and user experience. My portfolio spans gameplay mechanics, animation programming, and data-driven visualizations, including graph-based projects. Whether working independently or on a team, I take pride in writing clean, efficient code and continuously growing as a developer.</p>
 								</header>
-								<a class="image main"><img src="images/Portfolio website.png" alt="" /></a>
-								<!-- <ul class="actions special">
-									<li><a href="#" class="button large">View Project</a></li>
-								</ul> -->
+								<a class="image main about-hero"><img src="images/Portfolio website.png" alt="" /></a>
 								</article>
 								<article class="post">
 									<header class="major">
@@ -143,6 +147,12 @@ Crafting interactive experiences through code and creativity.</p>
 										<li>Graphics: shading, rasterization, rendering pipelines</li>
 										<li>Physics simulation: mass-spring, RK4, collisions</li>
 										<li>Web: ASP.NET, WinForms</li>
+									</ul>
+								</article>
+								<!-- Explore button below Skills -->
+								<article class="post full">
+									<ul class="actions special">
+										<li><a href="#" class="button large" onclick="goToProjects(); return false;">Explore My Projects</a></li>
 									</ul>
 								</article>
 							</section>
@@ -211,6 +221,12 @@ Crafting interactive experiences through code and creativity.</p>
 									<a class="image fit"><img src="images/IK.gif" alt="" /></a>
 									<ul class="actions special">
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/inverse-kinematics-with-skinning.html', 'IK with Skinning: Project Overview'); return false;">Project Overview</a></li>
+									</ul>
+								</article>
+								<!-- Bottom nav to go back to About -->
+								<article class="post full">
+									<ul class="actions special">
+										<li><a href="#" class="button large" onclick="goToAbout(); return false;">Back to About Me</a></li>
 									</ul>
 								</article>
 							</section>
@@ -321,6 +337,25 @@ Crafting interactive experiences through code and creativity.</p>
 				var initial = (location.hash === '#projects') ? 'projects' : 'about';
 				switchTab(initial);
 			})();
+
+			// Button navigation helpers (global) with smooth scroll
+			window.goToProjects = function() {
+				switchTab('projects');
+				var projects = document.getElementById('projects');
+				if (projects) {
+					var first = projects.querySelector('article');
+					(first || projects).scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
+			}
+
+			window.goToAbout = function() {
+				switchTab('about');
+				var about = document.getElementById('about');
+				if (about) {
+					var first = about.querySelector('article') || about;
+					first.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
+			}
 
 			// Image cycler
 			const images = ["images/a.png", "images/b.png", "images/c.png"];
