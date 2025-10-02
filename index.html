@@ -82,6 +82,68 @@
 
 	/* Make bottom button inside Projects span full width of the grid */
 	.posts > article.full { flex: 0 0 100%; width: 100%; }
+
+	/* Fancy CTA buttons */
+	.button.cta-primary {
+		background: linear-gradient(135deg, #6EE7F9 0%, #7367F0 50%, #FF6CAB 100%);
+		background-size: 200% 200%;
+		color: #fff !important;
+		border: none;
+		box-shadow: 0 10px 24px rgba(115,103,240,0.35), inset 0 0 0 1px rgba(255,255,255,0.12);
+		transition: transform .2s ease, box-shadow .2s ease, background-position .6s ease;
+	}
+	.button.cta-primary:hover {
+		transform: translateY(-2px);
+		background-position: 100% 0;
+		box-shadow: 0 14px 32px rgba(115,103,240,0.5), inset 0 0 0 1px rgba(255,255,255,0.18);
+	}
+	.button.cta-primary:active { transform: translateY(0); }
+	.button.cta-primary:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(115,103,240,0.35), 0 12px 28px rgba(115,103,240,0.45);
+	}
+	.button.cta-primary::after {
+		content: '→';
+		display: inline-block;
+		margin-left: .55em;
+		transition: transform .2s ease;
+	}
+	.button.cta-primary:hover::after { transform: translateX(4px); }
+
+	.button.cta-secondary {
+		/* Match primary color treatment while keeping left arrow */
+		background: linear-gradient(135deg, #6EE7F9 0%, #7367F0 50%, #FF6CAB 100%);
+		background-size: 200% 200%;
+		color: #fff !important;
+		border: none;
+		box-shadow: 0 10px 24px rgba(115,103,240,0.35), inset 0 0 0 1px rgba(255,255,255,0.12);
+		transition: transform .2s ease, box-shadow .2s ease, background-position .6s ease;
+	}
+	.button.cta-secondary:hover {
+		transform: translateY(-2px);
+		background-position: 100% 0;
+		box-shadow: 0 14px 32px rgba(115,103,240,0.5), inset 0 0 0 1px rgba(255,255,255,0.18);
+	}
+	.button.cta-secondary:active { transform: translateY(0); }
+	.button.cta-secondary:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(115,103,240,0.35), 0 12px 28px rgba(115,103,240,0.45);
+	}
+	.button.cta-secondary::before {
+		content: '←';
+		display: inline-block;
+		margin-right: .55em;
+		transition: transform .2s ease;
+	}
+	.button.cta-secondary:hover::before { transform: translateX(-4px); }
+
+	/* Respect reduced motion */
+	@media (prefers-reduced-motion: reduce) {
+		.button.cta-primary,
+		.button.cta-secondary { transition: none; }
+		.button.cta-primary:hover::after,
+		.button.cta-secondary:hover::before { transform: none; }
+	}
   </style>
 	</head>
 <!-- custom scripts are included at the end of body for valid structure -->
@@ -152,7 +214,7 @@ Crafting interactive experiences through code and creativity.</p>
 								<!-- Explore button below Skills -->
 								<article class="post full">
 									<ul class="actions special">
-										<li><a href="#" class="button large" onclick="goToProjects(); return false;">Explore My Projects</a></li>
+										<li><a href="#" class="button large cta-primary" onclick="goToProjects(); return false;">Explore My Projects</a></li>
 									</ul>
 								</article>
 							</section>
@@ -226,7 +288,7 @@ Crafting interactive experiences through code and creativity.</p>
 								<!-- Bottom nav to go back to About -->
 								<article class="post full">
 									<ul class="actions special">
-										<li><a href="#" class="button large" onclick="goToAbout(); return false;">Back to About Me</a></li>
+										<li><a href="#" class="button large cta-secondary" onclick="goToAbout(); return false;">Back to About Me</a></li>
 									</ul>
 								</article>
 							</section>
