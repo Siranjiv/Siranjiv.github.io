@@ -8,10 +8,9 @@
 	<head>
 		<title>Siranjiv Sivapalan's Portfolio</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		  <link rel="stylesheet" href="assets/css/main.css" />
   <style>
 	.video-container {
 		position: relative;
@@ -19,6 +18,7 @@
 		height: 0;
 		overflow: hidden;
 		max-width: 100%;
+		margin-bottom: 1.25rem; /* add space below videos */
 	}
 	.video-container iframe,
 	.video-container video {
@@ -28,21 +28,45 @@
 		width: 100%;
 		height: 100%;
 	}
+
+	/* Modal styles */
+	.modal-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0,0,0,0.5);
+		display: none;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+	}
+	.modal-overlay.open { display: flex; }
+	.modal-dialog {
+		background: #ffffff;
+		color: #000000;
+		max-width: 640px;
+		width: 90%;
+		max-height: 80vh;
+		overflow: auto;
+		border-radius: 8px;
+		box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+		outline: none;
+	}
+	.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(0,0,0,0.1); }
+	.modal-body { padding: 1rem 1.25rem; }
+	.modal-close { background: transparent; border: 0; font-size: 1.5rem; line-height: 1; cursor: pointer; color: inherit; }
+
+	/* Moved inline image styles to CSS */
+	#cycle-img {
+		width: 256px;
+		height: 256px;
+		/* Edge/Chromium fallback */
+		image-rendering: -webkit-optimize-contrast;
+		display: block;
+		margin: 0 auto;
+	}
   </style>
 	</head>
-<script>
-	const images = ["images/a.png", "images/b.png", "images/c.png"];
-	let currentIndex = 0;
-
-	function cycleImage(event) {
-		event.preventDefault(); // <-- Prevent the page from refreshing
-
-		const img = event.currentTarget.querySelector("img");
-		currentIndex = (currentIndex + 1) % images.length;
-		img.src = images[currentIndex];
-	}
-	
-</script>
+<!-- custom scripts are included at the end of body for valid structure -->
 
 	<body class="is-preload">
 
@@ -103,9 +127,9 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a>A 2D Game with Computer Vision & Voice Control</a></h2>
 									</header>
 									<a class="image fit"><img src="images/game.gif" alt="" /></a>
-									<p>This was the first game I ever developed an individual undergraduate research project focused on accessibility in games. Designed with the goal of supporting players with physical disabilities, the game replaced traditional input methods with voice recognition and computer vision. Built using Unity, C#, and OpenCV, it allowed players to interact using head movements and voice commands. The project not only sparked my passion for game development, but also deepened my commitment to creating inclusive and innovative play experiences.</p>
 									<ul class="actions special">
 										<li><a href="https://siranjiv.itch.io/the-organization-of-chaos" target="_blank" rel="noopener" class="button">View Project</a></li>
+										<li><a href="#" class="button" onclick="openProjectModal('assets/content/organization-of-chaos.html', 'A 2D Game: Project Overview'); return false;">Project Overview</a></li>
 									</ul>
 								</article>
 								<article>
@@ -113,15 +137,11 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a>Custom 3D Renderer in C/C++ <br>(Click the Image Below)</a></h2>
 									</header>
 									<a href="#" class="image fit" onclick="cycleImage(event)">
-										<img src="images/a.png" alt="Project Image" id="cycle-img" style="width: 256px; height: 256px; image-rendering: crisp-edges; display: block; margin: 0 auto;" />
+										<img src="images/a.png" alt="Project Image" id="cycle-img" />
 									</a>
-									<p>I developed a custom 3D renderer using C and C++, focusing on the core elements of the graphics pipeline such as transformations, shading, and rasterization. This solo project involved implementing techniques like projection math and triangle rasterization without relying on modern graphics APIs.
-										<br><br>
-										The images displayed here were all rendered by my engine, and you can click them to cycle through the outputs. This project marked a key step in building my low-level graphics skills and gave me confidence in creating rendering systems independently.
-									</p>
-									<!-- <ul class="actions special">
-											<li><a href="#" class="button">View Project</a></li>
-									</ul> -->
+									<ul class="actions special">
+										<li><a href="#" class="button" onclick="openProjectModal('assets/content/renderer.html', 'Custom 3D Renderer'); return false;">Project Overview</a></li>
+									</ul>
 								</article>
 								<article>
 									<header>
@@ -135,59 +155,36 @@ Crafting interactive experiences through code and creativity.</p>
 											 allowfullscreen>
 										 </iframe>
 									</div>
-									<p>This group project was part of USC’s Game Design Workshop course, where we created Now Hiring: Shadow Government, a party card game built around humor, debate, and storytelling. Working closely with my team, I contributed to designing game mechanics, writing card content, and conducting multiple rounds of playtesting. Through this project, I learned how to iterate based on player feedback, balance mechanics for different play styles, and design for social interaction. It also taught me how to collaborate effectively in a creative team and how to communicate design ideas clearly through prototypes and presentations.</p>
-									<!-- <ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul> -->
+									<ul class="actions special">
+										<li><a href="#" class="button" onclick="openProjectModal('assets/content/now-hiring-shadow-government.html', 'Now Hiring: Project Overview'); return false;">Project Overview</a></li>
+									</ul>
 								</article>
 								<article>
 									<header>
 										<h2><a>Jello Cube Simulation</a></h2>
 									</header>
 									<a class="image fit"><img src="images/Jello.gif" alt="" /></a>
-									<p>
-										I developed a physics-based simulation of a Jello Cube using a mass-spring system in C++ with OpenGL for visualization. The simulation models an 8×8×8 grid of mass points connected by structural, shear, and bend springs, and incorporates damping and external force fields. I implemented both explicit Euler and Runge-Kutta 4th order (RK4) integration methods to explore numerical stability in dynamic systems.
-									</p>
-									<p>
-										This project taught me how to simulate soft-body dynamics using Newtonian physics and Hooke’s Law, as well as how to handle real-time collisions using a spring penalty approach. I also added extra features such as collision with an internal cube and rendered the simulation within a Cornell Box environment for better visual clarity. Through this work, I gained a deeper understanding of numerical integrators, collision response, and the challenges of real-time physical simulation in animation.
-									</p>
-
-									<!-- <ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul> -->
+									<ul class="actions special">
+										<li><a href="#" class="button" onclick="openProjectModal('assets/content/jello-cube-simulation.html', 'Jello Cube: Project Overview'); return false;">Project Overview</a></li>
+									</ul>
 								</article>
 								<article>
 									<header>
 										<h2><a >Motion Capture Interpolation</a></h2>
 									</header>
 									<a class="image fit"><img src="images/MotionCapture.gif" alt="" /></a>
-									<p>
-										I developed a motion capture interpolation system in C++ and OpenGL that processes skeleton data (ASF) and motion data (AMC) to generate smooth intermediate animations. The system supports four interpolation methods: Linear Euler, Bezier Euler (via de Casteljau’s algorithm), Linear Quaternion (SLERP), and Bezier Quaternion. The results are saved to a new AMC file and visualized in an OpenGL-based mocap player, with original motion shown in red and interpolated motion in green.
-									</p>
-									<p>
-										This project deepened my understanding of animation interpolation techniques, the differences between Euler angles and quaternions, and the implementation of real-time skeletal visualization. It strengthened my grasp of key concepts in motion data processing and animation systems.
-									</p>
-									<!-- <ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul> -->
+									<ul class="actions special">
+										<li><a href="#" class="button" onclick="openProjectModal('assets/content/motion-capture-interpolation.html', 'Motion Capture: Project Overview'); return false;">Project Overview</a></li>
+									</ul>
 								</article>
 								<article>
 									<header>
 										<h2><a >Inverse Kinematics with Skinning</a></h2>
 									</header>
 									<a class="image fit"><img src="images/IK.gif" alt="" /></a>
-									<p>
-										I developed an inverse kinematics (IK) system integrated with mesh skinning using C++ and OpenGL. Built on a forward kinematics (FK) foundation, the project enables real-time animation of a deformable character mesh by manipulating joint transformations. It supports Damped Least Squares (DLS) IK and Linear Blend Skinning (LBS) as core features.
-									</p>
-									<p>
-										For added flexibility, I implemented multiple IK solvers (DLS, Pseudoinverse, and DLS_ALT) with recursive subdivision for smoother handle movements. The system also supports switching between Linear Blend and Dual Quaternion Skinning to compare deformation results. Additional features include interactive keyboard controls and frame-by-frame screenshot capture for recording animations.
-									</p>
-									<p>
-										This project deepened my understanding of real-time character animation, skeletal deformation techniques, and matrix/quaternion transformations providing hands-on experience with the mathematical and visual aspects of animation systems.
-									</p>
-									<!-- <ul class="actions special">
-										<li><a href="#" class="button">View Project</a></li>
-									</ul> -->
+									<ul class="actions special">
+										<li><a href="#" class="button" onclick="openProjectModal('assets/content/inverse-kinematics-with-skinning.html', 'IK with Skinning: Project Overview'); return false;">Project Overview</a></li>
+									</ul>
 								</article>
 							</section>
 					</div>
@@ -215,13 +212,70 @@ Crafting interactive experiences through code and creativity.</p>
 					<!-- <div id="copyright">
 						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
 					</div> -->
-					<div>
-						<ul><br></ul>
-					</div>
+					<!-- spacer removed: invalid list markup -->
 
 			</div>
 
+		<!-- Modal root -->
+		<div id="modal-overlay" class="modal-overlay" onclick="if(event.target===this) closeModal()">
+			<div id="modal-dialog" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+				<header class="modal-header">
+					<h3 id="modal-title">Details</h3>
+					<button type="button" class="modal-close" aria-label="Close" onclick="closeModal()">&times;</button>
+				</header>
+				<div id="modal-body" class="modal-body"></div>
+			</div>
+		</div>
+
 		<!-- Scripts -->
+		<script>
+			// Modal helper to trap focus and open/close
+			(function() {
+				function trapFocus(modal) {
+					const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+					if (!focusable.length) return;
+					const first = focusable[0];
+					const last = focusable[focusable.length - 1];
+					function handle(e) {
+						if (e.key === 'Tab') {
+							if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+							else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+						}
+						if (e.key === 'Escape') { closeModal(); }
+					}
+					modal.addEventListener('keydown', handle);
+				}
+
+				function openModalWithContent(url, titleText) {
+					const overlay = document.getElementById('modal-overlay');
+					const dialog = document.getElementById('modal-dialog');
+					const title = document.getElementById('modal-title');
+					const body = document.getElementById('modal-body');
+					title.textContent = titleText || 'Details';
+					body.innerHTML = '<p>Loading…</p>';
+					overlay.classList.add('open');
+					setTimeout(() => dialog.focus(), 0);
+					trapFocus(dialog);
+					fetch(url, { cache: 'no-store' })
+						.then(r => r.ok ? r.text() : Promise.reject(r.statusText))
+						.then(html => { body.innerHTML = html; })
+						.catch(() => { body.innerHTML = '<p>Failed to load content.</p>'; });
+				}
+
+				window.openProjectModal = function(url, titleText) { openModalWithContent(url, titleText); }
+				window.closeModal = function() { document.getElementById('modal-overlay').classList.remove('open'); }
+			})();
+
+			// Image cycler
+			const images = ["images/a.png", "images/b.png", "images/c.png"];
+			let currentIndex = 0;
+			function cycleImage(event) {
+				event.preventDefault();
+				const img = event.currentTarget.querySelector("img");
+				currentIndex = (currentIndex + 1) % images.length;
+				img.src = images[currentIndex];
+			}
+		</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
