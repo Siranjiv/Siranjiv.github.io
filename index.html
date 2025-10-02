@@ -65,6 +65,13 @@
 		margin: 0 auto;
 	}
 
+	/* Tab sections (force override theme grid rules) */
+	.tab-section { display: none !important; }
+	.tab-section.active { display: block !important; }
+
+	/* Keep Projects section (HTML5 UP 'posts') using its flex layout when visible */
+	.posts.tab-section.active { display: flex !important; }
+
 	/* Accent the Resume icon to make it stand out */
 	.icons .resume { color: #ff5a5f; border: 1px solid rgba(255,90,95,0.5); border-radius: 100%; box-shadow: 0 0 0 2px rgba(255,90,95,0.15); }
 	.icons .resume:hover { color: #fff; background: #ff5a5f; border-color: #ff5a5f; }
@@ -96,7 +103,8 @@ Crafting interactive experiences through code and creativity.</p>
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a >Projects</a></li>
+							<li id="nav-about" class="active"><a href="#" onclick="switchTab('about'); return false;">About</a></li>
+							<li id="nav-projects"><a href="#" onclick="switchTab('projects'); return false;">Projects</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="https://www.linkedin.com/in/ssiranjiv/" target="_blank" rel="noopener" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
@@ -111,8 +119,9 @@ Crafting interactive experiences through code and creativity.</p>
 				<!-- Main -->
 					<div id="main">
 
-						<!-- Featured Post -->
-							<article class="post featured">
+						<!-- About -->
+							<section id="about" class="tab-section active">
+								<article class="post featured">
 								<header class="major">
 									<h2><a>About Me<br />
 									</a></h2>
@@ -123,10 +132,23 @@ Crafting interactive experiences through code and creativity.</p>
 								<!-- <ul class="actions special">
 									<li><a href="#" class="button large">View Project</a></li>
 								</ul> -->
-							</article>
+								</article>
+								<article class="post">
+									<header class="major">
+										<h2><a>Skills</a></h2>
+									</header>
+									<ul>
+										<li>C++, OpenGL, Unity (C#)</li>
+										<li>Animation systems: IK, skinning, quaternions</li>
+										<li>Graphics: shading, rasterization, rendering pipelines</li>
+										<li>Physics simulation: mass-spring, RK4, collisions</li>
+										<li>Web: ASP.NET, WinForms</li>
+									</ul>
+								</article>
+							</section>
 
 						<!-- Posts -->
-							<section class="posts">
+							<section id="projects" class="posts tab-section">
 								<article>
 									<header>
 										<h2><a>A 2D Game with Computer Vision & Voice Control</a></h2>
@@ -270,6 +292,34 @@ Crafting interactive experiences through code and creativity.</p>
 
 				window.openProjectModal = function(url, titleText) { openModalWithContent(url, titleText); }
 				window.closeModal = function() { document.getElementById('modal-overlay').classList.remove('open'); }
+			})();
+
+			// Simple tab switcher: show About or Projects (default About)
+			(function() {
+				window.switchTab = function(name) {
+					var about = document.getElementById('about');
+					var projects = document.getElementById('projects');
+					var navAbout = document.getElementById('nav-about');
+					var navProjects = document.getElementById('nav-projects');
+					if (!about || !projects) return;
+					if (name === 'projects') {
+						about.classList.remove('active');
+						projects.classList.add('active');
+						navAbout.classList.remove('active');
+						navProjects.classList.add('active');
+					} else {
+						projects.classList.remove('active');
+						about.classList.add('active');
+						navProjects.classList.remove('active');
+						navAbout.classList.add('active');
+					}
+					// update hash without jumping
+					const hash = '#' + (name === 'projects' ? 'projects' : 'about');
+					history.pushState(null, '', hash);
+				}
+				// ensure the correct tab is shown on load (hash-aware)
+				var initial = (location.hash === '#projects') ? 'projects' : 'about';
+				switchTab(initial);
 			})();
 
 			// Image cycler
