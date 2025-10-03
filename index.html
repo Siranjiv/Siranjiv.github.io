@@ -443,6 +443,9 @@ Crafting interactive experiences through code and creativity.</p>
 
 			// Simple tab switcher: show About or Projects (default About)
 			(function() {
+				// One-time first-visit handling: start at top, avoid #about only once
+				var firstVisit = localStorage.getItem('visitedOnce') === '1' ? false : true;
+
 				window.switchTab = function(name) {
 					var about = document.getElementById('about');
 					var projects = document.getElementById('projects');
@@ -473,12 +476,28 @@ Crafting interactive experiences through code and creativity.</p>
 					}
 
 					// update hash without jumping
-					const hash = '#' + (name === 'projects' ? 'projects' : name === 'resume' ? 'resume' : 'about');
-					history.pushState(null, '', hash);
+					if (name === 'projects') {
+						history.replaceState(null, '', '#projects');
+					} else if (name === 'resume') {
+						history.replaceState(null, '', '#resume');
+					} else {
+						// About: only avoid #about on the first visit to prevent initial auto-scroll
+						if (firstVisit) {
+							history.replaceState(null, '', location.pathname + location.search);
+						} else {
+							history.replaceState(null, '', '#about');
+						}
+					}
 				}
 				// ensure the correct tab is shown on load (hash-aware)
 				var initial = (location.hash === '#projects') ? 'projects' : (location.hash === '#resume') ? 'resume' : 'about';
 				switchTab(initial);
+				if (firstVisit) {
+					// force start at the very top only once for new visitors
+					window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+					localStorage.setItem('visitedOnce', '1');
+					firstVisit = false;
+				}
 			})();
 
 			// Button navigation helpers (global) with smooth scroll
