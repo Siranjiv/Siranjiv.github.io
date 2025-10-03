@@ -221,7 +221,7 @@ Crafting interactive experiences through code and creativity.</p>
 						<!-- About -->
 							<section id="about" class="tab-section active">
 								<article class="post featured">
-								<header class="major">
+								<header class="major" id="about-heading">
 									<h2><a>About Me<br />
 									</a></h2>
 									<p>I’m Siranjiv Sivapalan, a software engineer and game developer based in Los Angeles, currently pursuing my Master’s in Computer Science (Game Development) at the University of Southern California. Prior to graduate school, I worked as a software engineer focusing on full-stack development using the ASP.NET framework building and maintaining end-to-end web applications and Windows applications in WinForms.</p>
@@ -273,7 +273,7 @@ Crafting interactive experiences through code and creativity.</p>
 						<!-- Posts -->
 							<section id="projects" class="posts tab-section">
 								<article>
-									<header>
+									<header id="first-project">
 										<h2><a>A 2D Game with Computer Vision & Voice Control</a></h2>
 									</header>
 									<a class="image fit"><img src="images/game.gif" alt="" /></a>
@@ -475,48 +475,29 @@ Crafting interactive experiences through code and creativity.</p>
 						navAbout.classList.add('active');
 					}
 
-					// update hash without jumping
-					if (name === 'projects') {
-						history.replaceState(null, '', '#projects');
-					} else if (name === 'resume') {
-						history.replaceState(null, '', '#resume');
-					} else {
-						// About: only avoid #about on the first visit to prevent initial auto-scroll
-						if (firstVisit) {
-							history.replaceState(null, '', location.pathname + location.search);
-						} else {
-							history.replaceState(null, '', '#about');
-						}
-					}
+					// Do not set hashes; manual scrolling is handled by goTo* helpers
 				}
-				// ensure the correct tab is shown on load (hash-aware)
-				var initial = (location.hash === '#projects') ? 'projects' : (location.hash === '#resume') ? 'resume' : 'about';
-				switchTab(initial);
-				if (firstVisit) {
-					// force start at the very top only once for new visitors
-					window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-					localStorage.setItem('visitedOnce', '1');
-					firstVisit = false;
-				}
+				// Always start at top on refresh/visit; default to About
+				history.replaceState(null, '', location.pathname + location.search);
+				switchTab('about');
+				window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 			})();
 
 			// Button navigation helpers (global) with smooth scroll
 			window.goToProjects = function() {
 				switchTab('projects');
-				var projects = document.getElementById('projects');
-				if (projects) {
-					var first = projects.querySelector('article');
-					(first || projects).scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
+				var target = document.getElementById('first-project');
+				if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
 			window.goToAbout = function() {
 				switchTab('about');
-				var about = document.getElementById('about');
-				if (about) {
-					var first = about.querySelector('article') || about;
-					first.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
+				var target = document.getElementById('about-heading');
+				if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+
+			window.goToResume = function() {
+				switchTab('resume');
 			}
 
 			// Image cycler
