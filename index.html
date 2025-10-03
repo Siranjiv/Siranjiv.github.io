@@ -159,6 +159,20 @@
 
 	/* More space above Explore button */
 	.post.full.about-explore { margin-top: 1.25rem; }
+
+	/* Resume embed: centered and responsive */
+	.resume-embed { max-width: 720px; margin: 0 auto; }
+	.resume-embed object { width: 100%; height: 65vh; border: 0; }
+				@media (max-width: 736px) {
+					.resume-embed object { height: 60vh; }
+					.resume-intro { font-size: 1.05rem; }
+				}
+
+				/* Resume intro: left-aligned and matched to viewer width */
+				.resume-intro { max-width: 720px; margin: 0 auto .75rem; font-size: 1.25rem; font-weight: 400; text-align: left; }
+
+				/* Tighter spacing under the Resume heading */
+				#resume header.major { margin-bottom: .35rem; }
   </style>
 	</head>
 <!-- custom scripts are included at the end of body for valid structure -->
@@ -189,6 +203,7 @@ Crafting interactive experiences through code and creativity.</p>
 						<ul class="links">
 							<li id="nav-about" class="active"><a href="#" onclick="switchTab('about'); return false;">About</a></li>
 							<li id="nav-projects"><a href="#" onclick="switchTab('projects'); return false;">Projects</a></li>
+							<li id="nav-resume"><a href="#" onclick="switchTab('resume'); return false;">Resume</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="https://www.linkedin.com/in/ssiranjiv/" target="_blank" rel="noopener" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
@@ -328,6 +343,24 @@ Crafting interactive experiences through code and creativity.</p>
 									</ul>
 								</article>
 							</section>
+
+							<!-- Resume -->
+							<section id="resume" class="tab-section">
+								<article class="post">
+									<header class="major">
+										<h2><a>Resume</a></h2>
+									</header>
+									<p class="resume-intro">Check out my resume!!!</p>
+									<div class="resume-embed">
+										<object data="assets/resume/SiranjivSivapalanResume.pdf#toolbar=1&zoom=page-width" type="application/pdf">
+											<p>Your browser can’t display PDFs inline. You can <a href="assets/resume/SiranjivSivapalanResume.pdf" target="_blank" rel="noopener">open the resume in a new tab</a>.</p>
+										</object>
+									</div>
+									<ul class="actions special">
+										<li><a href="assets/resume/SiranjivSivapalanResume.pdf" target="_blank" rel="noopener" class="button">Open in new tab</a></li>
+									</ul>
+								</article>
+							</section>
 					</div>
 
 				<!-- Footer -->
@@ -413,26 +446,38 @@ Crafting interactive experiences through code and creativity.</p>
 				window.switchTab = function(name) {
 					var about = document.getElementById('about');
 					var projects = document.getElementById('projects');
+					var resume = document.getElementById('resume');
 					var navAbout = document.getElementById('nav-about');
 					var navProjects = document.getElementById('nav-projects');
+					var navResume = document.getElementById('nav-resume');
 					if (!about || !projects) return;
+
+					// reset
+					about.classList.remove('active');
+					projects.classList.remove('active');
+					if (resume) resume.classList.remove('active');
+					navAbout.classList.remove('active');
+					navProjects.classList.remove('active');
+					if (navResume) navResume.classList.remove('active');
+
+					// set
 					if (name === 'projects') {
-						about.classList.remove('active');
 						projects.classList.add('active');
-						navAbout.classList.remove('active');
 						navProjects.classList.add('active');
+					} else if (name === 'resume') {
+						if (resume) resume.classList.add('active');
+						if (navResume) navResume.classList.add('active');
 					} else {
-						projects.classList.remove('active');
 						about.classList.add('active');
-						navProjects.classList.remove('active');
 						navAbout.classList.add('active');
 					}
+
 					// update hash without jumping
-					const hash = '#' + (name === 'projects' ? 'projects' : 'about');
+					const hash = '#' + (name === 'projects' ? 'projects' : name === 'resume' ? 'resume' : 'about');
 					history.pushState(null, '', hash);
 				}
 				// ensure the correct tab is shown on load (hash-aware)
-				var initial = (location.hash === '#projects') ? 'projects' : 'about';
+				var initial = (location.hash === '#projects') ? 'projects' : (location.hash === '#resume') ? 'resume' : 'about';
 				switchTab(initial);
 			})();
 
