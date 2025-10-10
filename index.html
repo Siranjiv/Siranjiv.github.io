@@ -352,12 +352,12 @@ Crafting interactive experiences through code and creativity.</p>
 									</header>
 									<p class="resume-intro">Check out my resume!!!</p>
 									<div class="resume-embed">
-										<object data="assets/resume/SiranjivSivapalanResume.pdf#toolbar=1&zoom=page-width" type="application/pdf">
+										<object id="resume-object" data-base="assets/resume/SiranjivSivapalanResume.pdf" data="assets/resume/SiranjivSivapalanResume.pdf#toolbar=1&zoom=page-width" type="application/pdf">
 											<p>Your browser can’t display PDFs inline. You can <a href="assets/resume/SiranjivSivapalanResume.pdf" target="_blank" rel="noopener">open the resume in a new tab</a>.</p>
 										</object>
 									</div>
 									<ul class="actions special">
-										<li><a href="assets/resume/SiranjivSivapalanResume.pdf" target="_blank" rel="noopener" class="button">Open in new tab</a></li>
+										<li><a id="resume-open-link" href="assets/resume/SiranjivSivapalanResume.pdf" target="_blank" rel="noopener" class="button">Open in new tab</a></li>
 									</ul>
 								</article>
 							</section>
@@ -446,6 +446,17 @@ Crafting interactive experiences through code and creativity.</p>
 				// One-time first-visit handling: start at top, avoid #about only once
 				var firstVisit = localStorage.getItem('visitedOnce') === '1' ? false : true;
 
+				function refreshResumeEmbed() {
+					var obj = document.getElementById('resume-object');
+					var link = document.getElementById('resume-open-link');
+					if (!obj) return;
+					var base = obj.getAttribute('data-base') || 'assets/resume/SiranjivSivapalanResume.pdf';
+					var ts = Date.now();
+					var viewSrc = base + '?v=' + ts + '#toolbar=1&zoom=page-width';
+					obj.setAttribute('data', viewSrc);
+					if (link) link.href = base + '?v=' + ts;
+				}
+
 				window.switchTab = function(name) {
 					var about = document.getElementById('about');
 					var projects = document.getElementById('projects');
@@ -470,6 +481,7 @@ Crafting interactive experiences through code and creativity.</p>
 					} else if (name === 'resume') {
 						if (resume) resume.classList.add('active');
 						if (navResume) navResume.classList.add('active');
+						refreshResumeEmbed();
 					} else {
 						about.classList.add('active');
 						navAbout.classList.add('active');
