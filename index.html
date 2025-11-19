@@ -152,6 +152,11 @@
 		.button.cta-secondary:hover::before { transform: none; }
 	}
 
+	/* Tech/tool icons shown under each project */
+	.tech-icons { display: flex; gap: .5rem; justify-content: center; align-items: center; list-style: none; padding: 0; margin: .5rem 0 .9rem; }
+	.tech-icons li { display: inline-flex; }
+	.tech-icons img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15)); }
+
 	/* Skills layout (tighter spacing + smaller text) */
 	.skills-def { margin: 0; display: grid; grid-template-columns: 1fr; gap: .15rem 1rem; }
 	.skills-def dt { font-weight: 700; color: inherit; font-size: 0.9rem; line-height: 1.3; margin: 0; }
@@ -286,6 +291,10 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a>Jello Cube Simulation</a></h2>
 									</header>
 									<a class="image fit"><img src="images/Jello.gif" alt="" /></a>
+									<ul class="tech-icons" aria-label="Technologies used">
+										<li><img src="assets/icons/cpp.png" alt="C++" title="C++" /></li>
+										<li><img src="assets/icons/OpenGL.png" alt="OpenGL" title="OpenGL" /></li>
+									</ul>
 									<ul class="actions special">
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/jello-cube-simulation.html', 'Jello Cube: Project Overview'); return false;">Project Overview</a></li>
 									</ul>
@@ -295,6 +304,10 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a >Motion Capture Interpolation</a></h2>
 									</header>
 									<a class="image fit"><img src="images/MotionCapture.gif" alt="" /></a>
+									<ul class="tech-icons" aria-label="Technologies used">
+										<li><img src="assets/icons/cpp.png" alt="C++" title="C++" /></li>
+										<li><img src="assets/icons/OpenGL.png" alt="OpenGL" title="OpenGL" /></li>
+									</ul>
 									<ul class="actions special">
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/motion-capture-interpolation.html', 'Motion Capture: Project Overview'); return false;">Project Overview</a></li>
 									</ul>
@@ -304,6 +317,10 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a >Inverse Kinematics with Skinning</a></h2>
 									</header>
 									<a class="image fit"><img src="images/IK.gif" alt="" /></a>
+									<ul class="tech-icons" aria-label="Technologies used">
+										<li><img src="assets/icons/cpp.png" alt="C++" title="C++" /></li>
+										<li><img src="assets/icons/OpenGL.png" alt="OpenGL" title="OpenGL" /></li>
+									</ul>
 									<ul class="actions special">
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/inverse-kinematics-with-skinning.html', 'IK with Skinning: Project Overview'); return false;">Project Overview</a></li>
 									</ul>
@@ -314,6 +331,11 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a >Cemented Dreams (Advanced Game Project– Ongoing)</a></h2>
 									</header>
 									<a class="image fit"><img src="images/Cemented_Dreams_UI.png" alt="" /></a>
+									<ul class="tech-icons" aria-label="Technologies used">
+										<li><img src="assets/icons/UnrealEngine.png" alt="Unreal Engine" title="Unreal Engine" /></li>
+										<li><img src="assets/icons/Perforce.png" alt="Perforce" title="Perforce" /></li>
+										<li><img src="assets/icons/cpp.png" alt="C++" title="C++" /></li>
+									</ul>
 									<ul class="actions special">
 										<li><a href="https://www.cemented-dreams.com/" target="_blank" rel="noopener" class="button">Visit Official Site</a></li>
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/cemented-dreams.html', 'Cemented Dreams: Project Overview'); return false;">Project Overview</a></li>
@@ -325,6 +347,11 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a>Takeout Takeoff (ongoing)</a></h2>
 									</header>
 										<a class="image fit"><img src="images/TakoutTakeOff.gif" alt="" /></a>
+									<ul class="tech-icons" aria-label="Technologies used">
+										<li><img src="assets/icons/Unity.png" alt="Unity" title="Unity" /></li>
+										<li><img src="assets/icons/Jira.png" alt="Jira" title="Jira" /></li>
+										<li><img src="assets/icons/Perforce.png" alt="Perforce" title="Perforce" /></li>
+									</ul>
 									<ul class="actions special">
 											<li><a href="#" class="button" onclick="openProjectModal('assets/content/takeout-takeoff-play.html', 'Play: Takeout Takeoff'); return false;">Play Game</a></li>
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/takeout-takeoff.html', 'Takeout Takeoff: Project Overview'); return false;">Project Overview</a></li>
@@ -337,6 +364,9 @@ Crafting interactive experiences through code and creativity.</p>
 									<a href="#" class="image fit" onclick="cycleImage(event)">
 										<img src="images/a.png" alt="Project Image" id="cycle-img" />
 									</a>
+									<ul class="tech-icons" aria-label="Technologies used">
+										<li><img src="assets/icons/cpp.png" alt="C++" title="C++" /></li>
+									</ul>
 									<ul class="actions special">
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/renderer.html', 'Custom 3D Renderer'); return false;">Project Overview</a></li>
 									</ul>
@@ -346,6 +376,9 @@ Crafting interactive experiences through code and creativity.</p>
 										<h2><a>A 2D Game with Computer Vision & Voice Control</a></h2>
 									</header>
 									<a class="image fit"><img src="images/game.gif" alt="" /></a>
+									<ul class="tech-icons" aria-label="Technologies used">
+										<li><img src="assets/icons/Unity.png" alt="Unity" title="Unity" /></li>
+									</ul>
 									<ul class="actions special">
 										<li><a href="https://siranjiv.itch.io/the-organization-of-chaos" target="_blank" rel="noopener" class="button">View Project</a></li>
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/organization-of-chaos.html', 'A 2D Game: Project Overview'); return false;">Project Overview</a></li>
