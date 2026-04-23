@@ -144,10 +144,30 @@
 	}
 	.button.cta-secondary:hover::before { transform: translateX(-4px); }
 
+	/* Highlighted Dev Blog action button */
+	.button.dev-blog-highlight {
+		background: linear-gradient(115deg, #7f5cff 0%, #56d9ff 48%, #a28bff 100%);
+		background-size: 240% 100%;
+		color: #ffffff !important;
+		border-color: transparent !important;
+		box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 8px 18px rgba(94, 116, 255, 0.3);
+		animation: devBlogGlow 3.2s ease-in-out infinite;
+	}
+	.button.dev-blog-highlight:hover {
+		box-shadow: 0 0 0 1px rgba(255,255,255,0.28), 0 10px 22px rgba(86, 217, 255, 0.42);
+		background-position: 100% 0;
+	}
+	@keyframes devBlogGlow {
+		0% { background-position: 0% 50%; box-shadow: 0 0 0 1px rgba(255,255,255,0.16), 0 8px 18px rgba(94, 116, 255, 0.24); }
+		50% { background-position: 100% 50%; box-shadow: 0 0 0 1px rgba(255,255,255,0.3), 0 10px 24px rgba(86, 217, 255, 0.45); }
+		100% { background-position: 0% 50%; box-shadow: 0 0 0 1px rgba(255,255,255,0.16), 0 8px 18px rgba(94, 116, 255, 0.24); }
+	}
+
 	/* Respect reduced motion */
 	@media (prefers-reduced-motion: reduce) {
 		.button.cta-primary,
-		.button.cta-secondary { transition: none; }
+		.button.cta-secondary,
+		.button.dev-blog-highlight { transition: none; animation: none; }
 		.button.cta-primary:hover::after,
 		.button.cta-secondary:hover::before { transform: none; }
 	}
@@ -352,6 +372,7 @@ Crafting interactive experiences through code and creativity.</p>
 									<ul class="actions special">
 										<li><a href="https://www.cemented-dreams.com/" target="_blank" rel="noopener" class="button">Visit Official Site</a></li>
 										<li><a href="#" class="button" onclick="openProjectModal('assets/content/cemented-dreams.html', 'Cemented Dreams: Project Overview'); return false;">Project Overview</a></li>
+										<li><a href="dev-blog.html" class="button dev-blog-highlight">Dev Blog</a></li>
 									</ul>
 								</article>
 								<!-- Takeout Takeoff (Unity WebGL) -->

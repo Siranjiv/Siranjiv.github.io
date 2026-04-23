@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Cemented Dreams Dev Blog - October 2025</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				background:
+					radial-gradient(900px 420px at 8% -8%, rgba(158, 139, 255, 0.2), transparent 60%),
+					radial-gradient(860px 420px at 95% 0%, rgba(125, 232, 255, 0.2), transparent 58%),
+					#f6f7fb;
+			}
+			.blog-shell {
+				background: #ffffff;
+				border-radius: 14px;
+				box-shadow: 0 12px 28px rgba(30, 32, 56, 0.1);
+				padding: 1.4rem;
+			}
+			.blog-meta {
+				display: inline-block;
+				border-radius: 999px;
+				padding: 0.25rem 0.8rem;
+				background: linear-gradient(115deg, #9e8bff 0%, #7de8ff 100%);
+				color: #ffffff;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				font-size: 0.75rem;
+				text-transform: uppercase;
+			}
+			.blog-lead {
+				margin: 0 0 1.2rem;
+				font-size: 1.03rem;
+				line-height: 1.8;
+			}
+			.snapshot {
+				background: linear-gradient(140deg, rgba(158, 139, 255, 0.08), rgba(125, 232, 255, 0.08));
+				border: 1px solid rgba(75, 84, 130, 0.14);
+				border-radius: 12px;
+				padding: 1rem 1.1rem;
+				margin-bottom: 1.6rem;
+			}
+			.snapshot h3 {
+				margin-bottom: 0.65rem;
+			}
+			.snapshot ul {
+				margin: 0;
+			}
+			.timeline {
+				display: grid;
+				gap: 1rem;
+			}
+			.week-card {
+				border: 1px solid rgba(39, 44, 76, 0.14);
+				border-radius: 12px;
+				padding: 1rem 1.05rem;
+				background: #ffffff;
+				box-shadow: 0 8px 22px rgba(25, 28, 54, 0.07);
+			}
+			.week-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 0.6rem;
+				margin-bottom: 0.5rem;
+			}
+			.week-header h3 {
+				margin: 0;
+			}
+			.week-chip {
+				display: inline-block;
+				padding: 0.2rem 0.7rem;
+				border-radius: 999px;
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				color: #1b2345;
+				background: rgba(125, 232, 255, 0.26);
+			}
+			.week-card p {
+				margin-bottom: 0.85rem;
+			}
+			.update-list {
+				margin-bottom: 0.95rem;
+			}
+			.idea-figure {
+				margin: 0.9rem 0 1rem;
+			}
+			.idea-figure img {
+				display: block;
+				width: 100%;
+				height: auto;
+				border-radius: 10px;
+				border: 1px solid rgba(29, 34, 67, 0.14);
+				box-shadow: 0 8px 18px rgba(20, 26, 58, 0.1);
+			}
+			.idea-figure figcaption {
+				margin-top: 0.45rem;
+				font-size: 0.85rem;
+				color: #3b4064;
+			}
+			.video-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 0.8rem;
+			}
+			.video-card {
+				border-radius: 10px;
+				border: 1px solid rgba(29, 34, 67, 0.13);
+				padding: 0.6rem;
+				background: #fbfcff;
+			}
+			.video-title {
+				display: block;
+				font-size: 0.86rem;
+				font-weight: 700;
+				margin-bottom: 0.45rem;
+				color: #1a1f3a;
+			}
+			.video-wrap {
+				position: relative;
+				width: 100%;
+				padding-bottom: 56.25%;
+				height: 0;
+				overflow: hidden;
+				border-radius: 8px;
+			}
+			.video-wrap iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border: 0;
+			}
+			@media (max-width: 736px) {
+				.week-header {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper" class="fade-in">
+			<header id="header">
+				<a href="dev-blog.html" class="logo">Back To Dev Blog</a>
+			</header>
+
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="index.html">Portfolio</a></li>
+					<li><a href="dev-blog.html">Dev Blog Hub</a></li>
+					<li class="active"><a href="dev-blog-2025-october.html">October 2025</a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+				<section class="post blog-shell">
+					<header class="major">
+						<span class="blog-meta">Cemented Dreams</span>
+						<h1>October 2025 Dev Blog</h1>
+						<p>Siranjiv Sivapalan | Weekly Engineering Notes</p>
+					</header>
+
+					<p class="blog-lead">This month focused on the Grow Transformation feature across two implementations: a moving corridor wall system and an alternative spline-driven bridge system inspired by the Genshin loading bridge concept. Both were developed in C++ for performance, control, and scalability.</p>
+
+					<section class="snapshot">
+						<h3>October Snapshot</h3>
+						<ul>
+							<li>Built and finalized the Grow Transformation system for moving corridor walls.</li>
+							<li>Added debug visualization and created designer tutorials for faster team adoption.</li>
+							<li>Prototyped and finalized an alternative spline and PCG-driven grow system inspired by a bridge-loading concept.</li>
+							<li>Resolved PCG edge stability issues and delivered stable in-game previews.</li>
+						</ul>
+					</section>
+
+					<div class="timeline">
+						<article class="week-card">
+							<div class="week-header">
+								<h3>Week 1</h3>
+								<span class="week-chip">Grow Transformation Start</span>
+							</div>
+							<p>I began the next architecture transformation task after completing the Move Transformation system. This new feature, the Grow Transformation system, started with a Moving Corridor Wall implementation.</p>
+							<p>The system creates a dynamic hallway effect where corridor walls advance or retract in relation to the player, simulating a compressing or shifting space. The implementation is being built with designer flexibility through controls for movement speed, travel distance, activation range, and trigger conditions.</p>
+							<p>At this stage, I focused on establishing the core logic and validating player-driven wall behavior as the technical foundation for future refinements.</p>
+							<figure class="idea-figure">
+								<img src="images/growidea.png" alt="Director implementation concept for Grow Transformation" />
+								<figcaption>Director implementation concept reference for the Grow Transformation system.</figcaption>
+							</figure>
+						</article>
+
+						<article class="week-card">
+							<div class="week-header">
+								<h3>Week 2</h3>
+								<span class="week-chip">System Finalization</span>
+							</div>
+							<p>I completed the requested Grow Transformation system based on the Moving Corridor Wall concept. The final implementation responds to player interaction as intended and creates a dynamic, shifting environment during traversal.</p>
+							<ul class="update-list">
+								<li>Implemented debug collider outlines for rapid iteration.</li>
+								<li>Added forward-vector visualization to inspect activation behavior in real time.</li>
+								<li>I recorded a tutorial video for designers to support onboarding and configuration.</li>
+								<li>Implemented in C++ for better runtime performance and long-term maintainability.</li>
+							</ul>
+							<div class="video-grid">
+								<div class="video-card">
+									<span class="video-title">Grow Transformation(Default) Preview</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/Kmozj4Yz7t4" title="Grow Transformation Week 2 demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+								<div class="video-card">
+									<span class="video-title">Grow Transformation(Default) Tutorial for Designers</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/5dlXGThKV5E" title="Grow Transformation default tutorial for designers" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<article class="week-card">
+							<div class="week-header">
+								<h3>Week 3</h3>
+								<span class="week-chip">Alternative Prototype</span>
+							</div>
+							<p>I started an alternative Grow Transformation direction based on new director feedback, inspired by the Genshin loading bridge style and potentially powered by Unreal Engine PCG for dynamic generation at scale.</p>
+							<p>Since PCG was new to me, I invested time learning the workflow while building an initial prototype in parallel. The prototype already captures the core behavior: dynamic structure formation that supports player traversal.</p>
+							<p>The current focus is improving stability, expanding customization, and making the feature easier for designers to use. As with previous systems, this implementation is in C++.</p>
+							<div class="video-grid">
+								<div class="video-card">
+									<span class="video-title">Alternative Prototype Demo 1</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/faS2But9iGw" title="Alternative grow transformation prototype demo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+								<div class="video-card">
+									<span class="video-title">Alternative Prototype Demo 2</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/eD3LiFuyBKg" title="Alternative grow transformation prototype demo 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<article class="week-card">
+							<div class="week-header">
+								<h3>Week 4</h3>
+								<span class="week-chip">Stable Final Version</span>
+							</div>
+							<p>I completed the alternative Grow Transformation system inspired by the bridge concept. The final implementation uses C++ and allows designers to define custom spline paths that drive dynamic platform growth.</p>
+							<ul class="update-list">
+								<li>Spline-defined pathing for level-specific platform generation.</li>
+								<li>Resolved side-edge formation issues by refining PCG graph settings.</li>
+								<li>Delivered stable and visually consistent output for in-game usage.</li>
+								<li>Recorded a designer tutorial for setup and customization workflows.</li>
+							</ul>
+							<div class="video-grid">
+								<div class="video-card">
+									<span class="video-title">Stable Version with Spline</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/37eBVh8QGh8" title="Stable spline-based grow transformation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+								<div class="video-card">
+									<span class="video-title">Final Version</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/ncoVYmKKbTw" title="Final grow transformation version" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+								<div class="video-card">
+									<span class="video-title">In-Game Preview</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/OFvj86LWSp0" title="Grow transformation in-game preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+								<div class="video-card">
+									<span class="video-title">Designer Tutorial</span>
+									<div class="video-wrap">
+										<iframe src="https://www.youtube.com/embed/9q2kK4h91o8" title="Alternative grow transformation designer tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
