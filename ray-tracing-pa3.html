@@ -1,0 +1,613 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Ray Tracing Project Breakdown</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			:root {
+				--ray-a: #7dd3fc;
+				--ray-b: #38bdf8;
+				--ray-c: #0f172a;
+				--panel: #ffffff;
+				--ink: #152238;
+			}
+
+			body {
+				background:
+					radial-gradient(900px 420px at 12% -10%, rgba(56, 189, 248, 0.24), transparent 58%),
+					radial-gradient(1100px 520px at 90% 0%, rgba(125, 211, 252, 0.25), transparent 62%),
+					#f7fbff;
+			}
+
+			#main {
+				padding-top: 2rem;
+			}
+
+			.ray-hero {
+				text-align: center;
+			}
+
+			.ray-hero p {
+				max-width: 840px;
+				margin: 0.75rem auto 0;
+			}
+
+			.ray-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1rem;
+				margin: 1.5rem 0 0;
+			}
+
+			.ray-card {
+				background: var(--panel);
+				border-radius: 12px;
+				padding: 1rem 1.1rem;
+				box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+				border: 1px solid rgba(15, 23, 42, 0.08);
+			}
+
+			.ray-card h3 {
+				margin: 0 0 0.55rem;
+				font-size: 1.05rem;
+				color: var(--ink);
+			}
+
+			.ray-list {
+				margin: 0;
+				padding-left: 1.1rem;
+			}
+
+			.ray-list li {
+				margin: 0.2rem 0;
+			}
+
+			.scene-open {
+				display: block;
+				width: 100%;
+				height: auto !important;
+				line-height: 0 !important;
+				padding: 0 !important;
+				margin: 0;
+				border: 0;
+				background: transparent;
+				font: inherit;
+				letter-spacing: normal;
+				text-transform: none;
+				white-space: normal;
+				cursor: pointer;
+			}
+
+			.showcase-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+				gap: 1.35rem;
+				margin-top: 1rem;
+			}
+
+			.figure-card {
+				background: #ffffff;
+				border-radius: 12px;
+				box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+				border: 1px solid rgba(15, 23, 42, 0.08);
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				max-width: 720px;
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.figure-card img {
+				display: block;
+				width: 100%;
+				height: auto !important;
+				max-height: none !important;
+				object-fit: fill;
+				aspect-ratio: auto;
+			}
+
+			.scene-name {
+				padding: 0.85rem 0.95rem;
+				font-size: 0.92rem;
+				line-height: 1.45;
+				color: #334155;
+				text-align: center;
+				font-family: "Source Sans Pro", Helvetica, sans-serif;
+				margin: 0;
+				background: #ffffff;
+				border-top: 1px solid rgba(15, 23, 42, 0.08);
+			}
+
+			@media (max-width: 1200px) {
+				.showcase-grid {
+					grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				}
+			}
+
+			.rt-lightbox {
+				position: fixed;
+				inset: 0;
+				background: rgba(5, 15, 25, 0.8);
+				display: none;
+				align-items: center;
+				justify-content: center;
+				z-index: 1200;
+				padding: 1rem;
+			}
+
+			.rt-lightbox.open {
+				display: flex;
+			}
+
+			.rt-stage {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.55rem;
+			}
+
+			.rt-frame {
+				position: relative;
+				margin: 0;
+				width: min(92vw, 980px);
+				max-height: 88vh;
+				background: #ffffff;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+				display: flex;
+				flex-direction: column;
+			}
+
+			.rt-media {
+				padding: 0.9rem 0.9rem 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: #ffffff;
+				min-height: 0;
+			}
+
+			.rt-frame img {
+				display: block;
+				max-width: 100%;
+				width: auto;
+				height: auto;
+				max-height: 67vh;
+				object-fit: contain;
+				background: #ffffff;
+			}
+
+			.rt-frame figcaption {
+				padding: 1rem 1.2rem 1.15rem;
+				font-size: 1.02rem;
+				line-height: 1.55;
+				color: #334155;
+				text-align: center;
+				font-family: "Source Sans Pro", Helvetica, sans-serif;
+				background: #ffffff;
+				border-top: 1px solid rgba(15, 23, 42, 0.08);
+			}
+
+			.paginate {
+				all: unset;
+				display: block;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 3;
+				width: 58px;
+				height: 58px;
+				margin: 0;
+				padding: 0;
+				background: transparent;
+				border: 0;
+				outline: 0;
+				cursor: pointer;
+				-webkit-appearance: none;
+				appearance: none;
+				-webkit-tap-highlight-color: transparent;
+				background: transparent !important;
+				border: 0 !important;
+				box-shadow: none;
+			}
+
+			.paginate:focus,
+			.paginate:focus-visible,
+			.paginate:hover,
+			.paginate:active {
+				outline: none;
+				background: transparent !important;
+				border: 0 !important;
+				box-shadow: none;
+			}
+
+			.paginate::-moz-focus-inner {
+				border: 0;
+				padding: 0;
+			}
+
+			.paginate i {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 58px;
+				height: 6px;
+				margin-top: -3px;
+				border-radius: 3px;
+				background: #cbd5e1;
+				box-shadow: 0 0 0 2px rgba(2, 6, 23, 0.82), 0 2px 8px rgba(2, 6, 23, 0.35);
+				transition: transform 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+			}
+
+			.paginate:hover i {
+				background: #94a3b8;
+				box-shadow: 0 0 0 2px rgba(2, 6, 23, 0.9), 0 2px 8px rgba(2, 6, 23, 0.45);
+			}
+
+			.paginate:active i {
+				background: #e2e8f0;
+			}
+
+			.paginate.left { left: 1rem; }
+			.paginate.left i { transform-origin: 0% 50%; }
+			.paginate.left i:first-child { transform: translate(0, -1px) rotate(40deg); }
+			.paginate.left i:last-child { transform: translate(0, 1px) rotate(-40deg); }
+			.paginate.left:hover i:first-child { transform: translate(0, -1px) rotate(30deg); }
+			.paginate.left:hover i:last-child { transform: translate(0, 1px) rotate(-30deg); }
+			.paginate.left:active i:first-child { transform: translate(1px, -1px) rotate(25deg); }
+			.paginate.left:active i:last-child { transform: translate(1px, 1px) rotate(-25deg); }
+
+			.paginate.right { right: 1rem; }
+			.paginate.right i { transform-origin: 100% 50%; }
+			.paginate.right i:first-child { transform: translate(0, 1px) rotate(40deg); }
+			.paginate.right i:last-child { transform: translate(0, -1px) rotate(-40deg); }
+			.paginate.right:hover i:first-child { transform: translate(0, 1px) rotate(30deg); }
+			.paginate.right:hover i:last-child { transform: translate(0, -1px) rotate(-30deg); }
+			.paginate.right:active i:first-child { transform: translate(1px, 1px) rotate(25deg); }
+			.paginate.right:active i:last-child { transform: translate(1px, -1px) rotate(-25deg); }
+
+			.paginate[data-state="disabled"] {
+				opacity: 0.25;
+				cursor: default;
+				pointer-events: none;
+			}
+
+			.counter {
+				text-align: center;
+				position: static;
+				padding: 0;
+				font-size: 1.08rem;
+				font-weight: 700;
+				line-height: 1.2;
+				font-family: "Source Sans Pro", Helvetica, sans-serif;
+				color: #ffffff;
+				background: transparent;
+				border: 0;
+				text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+			}
+
+			@media (max-width: 736px) {
+				.showcase-grid {
+					grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				}
+				.rt-frame {
+					width: 95vw;
+				}
+				.rt-frame img {
+					max-height: 56vh;
+				}
+				.paginate {
+					width: 46px;
+					height: 46px;
+				}
+				.paginate i {
+					width: 46px;
+					height: 5px;
+					margin-top: -2.5px;
+					border-radius: 2.5px;
+				}
+				.paginate.left { left: 0.35rem; }
+				.paginate.right { right: 0.35rem; }
+				.counter {
+					font-size: 0.98rem;
+				}
+				.rt-frame figcaption {
+					font-size: 0.95rem;
+					line-height: 1.45;
+				}
+			}
+
+			.pill {
+				display: inline-block;
+				margin-bottom: 0.65rem;
+				padding: 0.2rem 0.6rem;
+				border-radius: 999px;
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.02em;
+				background: linear-gradient(120deg, var(--ray-a), var(--ray-b));
+				color: #072437;
+			}
+
+			@media (max-width: 736px) {
+				.figure-card {
+					max-width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper" class="fade-in">
+			<header id="header">
+				<a href="index.html" class="logo">Back To Portfolio</a>
+			</header>
+
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="index.html">Portfolio</a></li>
+					<li class="active"><a href="ray-tracing-pa3.html">Ray Tracing</a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+				<section class="post">
+					<header class="major ray-hero">
+						<h1>Ray Tracing in C/C++</h1>
+						<p>
+							This project was built in C/C++ with CPU-based backward ray tracing from a fixed camera at (0,0,0).
+							I implemented all core features and completed extra credit for recursive reflection,
+							soft shadows, anti-aliasing, and animation output.
+						</p>
+					</header>
+
+					<div class="ray-grid">
+						<article class="ray-card">
+							<span class="pill">Core Requirements Implemented</span>
+							<h3>What I built</h3>
+							<ul class="ray-list">
+								<li>Uniform camera rays with 60 degree FOV at 640x480 final output resolution.</li>
+								<li>Ray-object intersection for both triangles and spheres.</li>
+								<li>Phong illumination with diffuse/specular shading and clamped dot products.</li>
+								<li>Per-light shadow rays to determine occlusion and direct lighting contribution.</li>
+								<li>Barycentric interpolation on triangle hits for normals, material coefficients, and shininess.</li>
+								<li>Global ambient term added once per hit and final color channel clamping to [0,1].</li>
+								<li>Still image output support (JPEG) in addition to on-screen rendering.</li>
+							</ul>
+						</article>
+
+						<article class="ray-card">
+							<span class="pill">Extra Credit Completed</span>
+							<h3>Advanced features</h3>
+							<ul class="ray-list">
+								<li>Recursive reflection using weighted local + reflected contribution.</li>
+								<li>Soft shadows with area-light style sampling.</li>
+								<li>Anti-aliasing with multi-sample style supersampling.</li>
+								<li>Animation frame rendering exported as GIF sequence.</li>
+							</ul>
+							<p>
+								These results were tested across assignment scenes (including toy, table, spheres, and SIGGRAPH)
+								to validate shading quality, reflections, and temporal consistency in animation.
+							</p>
+						</article>
+					</div>
+
+					<hr />
+
+					<header>
+						<h2>Interactive Scene Gallery</h2>
+						<p>Click a scene to open a popup. Use the arrows to compare in this order: Normal, Soft Shadows + AA, Recursive Reflection, then GIF animation.</p>
+					</header>
+					<div class="showcase-grid">
+						<article class="figure-card">
+							<button type="button" class="scene-open" data-scene="table" aria-label="Open Table comparison">
+								<img src="images/Raytracing/Normal%20Images/table.jpg" alt="Table scene preview" />
+							</button>
+							<p class="scene-name">Table</p>
+						</article>
+						<article class="figure-card">
+							<button type="button" class="scene-open" data-scene="spheres" aria-label="Open Spheres comparison">
+								<img src="images/Raytracing/Normal%20Images/spheres.jpg" alt="Spheres scene preview" />
+							</button>
+							<p class="scene-name">Spheres</p>
+						</article>
+						<article class="figure-card">
+							<button type="button" class="scene-open" data-scene="snow" aria-label="Open Snow comparison">
+								<img src="images/Raytracing/Normal%20Images/snow.jpg" alt="Snowman scene preview" />
+							</button>
+							<p class="scene-name">Snowman</p>
+						</article>
+						<article class="figure-card">
+							<button type="button" class="scene-open" data-scene="siggraph" aria-label="Open SIGGRAPH comparison">
+								<img src="images/Raytracing/Normal%20Images/SIGGRAPH.jpg" alt="SIGGRAPH scene preview" />
+							</button>
+							<p class="scene-name">SIGGRAPH</p>
+						</article>
+						<article class="figure-card">
+							<button type="button" class="scene-open" data-scene="toy" aria-label="Open Toy comparison">
+								<img src="images/Raytracing/Normal%20Images/toy.jpg" alt="Toy scene preview" />
+							</button>
+							<p class="scene-name">Toy</p>
+						</article>
+						<article class="figure-card">
+							<button type="button" class="scene-open" data-scene="test2" aria-label="Open Test2 comparison">
+								<img src="images/Raytracing/Normal%20Images/test2.jpg" alt="Test2 scene preview" />
+							</button>
+							<p class="scene-name">Test 2</p>
+						</article>
+						<article class="figure-card">
+							<button type="button" class="scene-open" data-scene="test1" aria-label="Open Test1 comparison">
+								<img src="images/Raytracing/Normal%20Images/test1.jpg" alt="Test1 scene preview" />
+							</button>
+							<p class="scene-name">Test 1</p>
+						</article>
+					</div>
+
+					<div id="rt-lightbox" class="rt-lightbox" aria-hidden="true" onclick="if(event.target === this) closeRtLightbox()">
+						<button type="button" class="paginate left" aria-label="Previous image"><i></i><i></i></button>
+						<div class="rt-stage">
+							<figure class="rt-frame">
+								<div class="rt-media">
+									<img id="rt-lightbox-image" src="" alt="" />
+								</div>
+								<figcaption id="rt-lightbox-caption"></figcaption>
+							</figure>
+							<div id="rt-counter" class="counter" aria-live="polite"></div>
+						</div>
+						<button type="button" class="paginate right" aria-label="Next image"><i></i><i></i></button>
+					</div>
+
+					<ul class="actions special" style="margin-top: 1.5rem;">
+						<li><a href="index.html" class="button large">Back To Portfolio</a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script>
+			(function() {
+				const gallery = {
+					toy: [
+						{ label: 'Normal', src: 'images/Raytracing/Normal%20Images/toy.jpg' },
+						{ label: 'Soft Shadows + AA', src: 'images/Raytracing/Soft%20Shadows%20+%20AA/toy.jpg' },
+						{ label: 'Recursive Reflection', src: 'images/Raytracing/Recursive%20Reflection/toy.jpg' },
+						{ label: 'Animation GIF', src: 'images/Raytracing/Gif/toy.gif' }
+					],
+					test1: [
+						{ label: 'Normal', src: 'images/Raytracing/Normal%20Images/test1.jpg' },
+						{ label: 'Soft Shadows + AA', src: 'images/Raytracing/Soft%20Shadows%20+%20AA/test1.jpg' },
+						{ label: 'Recursive Reflection', src: 'images/Raytracing/Recursive%20Reflection/test1.jpg' },
+						{ label: 'Animation GIF', src: 'images/Raytracing/Gif/test1.gif' }
+					],
+					test2: [
+						{ label: 'Normal', src: 'images/Raytracing/Normal%20Images/test2.jpg' },
+						{ label: 'Soft Shadows + AA', src: 'images/Raytracing/Soft%20Shadows%20+%20AA/test2.jpg' },
+						{ label: 'Recursive Reflection', src: 'images/Raytracing/Recursive%20Reflection/test2.jpg' },
+						{ label: 'Animation GIF', src: 'images/Raytracing/Gif/test2.gif' }
+					],
+					table: [
+						{ label: 'Normal', src: 'images/Raytracing/Normal%20Images/table.jpg' },
+						{ label: 'Soft Shadows + AA', src: 'images/Raytracing/Soft%20Shadows%20+%20AA/table.jpg' },
+						{ label: 'Recursive Reflection', src: 'images/Raytracing/Recursive%20Reflection/table.jpg' },
+						{ label: 'Animation GIF', src: 'images/Raytracing/Gif/Table.gif' }
+					],
+					spheres: [
+						{ label: 'Normal', src: 'images/Raytracing/Normal%20Images/spheres.jpg' },
+						{ label: 'Soft Shadows + AA', src: 'images/Raytracing/Soft%20Shadows%20+%20AA/spheres.jpg' },
+						{ label: 'Recursive Reflection', src: 'images/Raytracing/Recursive%20Reflection/spheres.jpg' },
+						{ label: 'Animation GIF', src: 'images/Raytracing/Gif/Spheres.gif' }
+					],
+					snow: [
+						{ label: 'Normal', src: 'images/Raytracing/Normal%20Images/snow.jpg' },
+						{ label: 'Soft Shadows + AA', src: 'images/Raytracing/Soft%20Shadows%20+%20AA/snow.jpg' },
+						{ label: 'Recursive Reflection', src: 'images/Raytracing/Recursive%20Reflection/snow.jpg' },
+						{ label: 'Animation GIF', src: 'images/Raytracing/Gif/snow.gif' }
+					],
+					siggraph: [
+						{ label: 'Normal', src: 'images/Raytracing/Normal%20Images/SIGGRAPH.jpg' },
+						{ label: 'Soft Shadows + AA', src: 'images/Raytracing/Soft%20Shadows%20+%20AA/SIGGRAPH.jpg' },
+						{ label: 'Recursive Reflection', src: 'images/Raytracing/Recursive%20Reflection/SIGGRAPH.jpg' },
+						{ label: 'Animation GIF', src: 'images/Raytracing/Gif/SIGGRAPH.gif' }
+					]
+				};
+
+				const sceneLabels = {
+					toy: 'Toy',
+					test1: 'Test 1',
+					test2: 'Test 2',
+					table: 'Table',
+					spheres: 'Spheres',
+					snow: 'Snowman',
+					siggraph: 'SIGGRAPH'
+				};
+
+				const stageDescriptions = {
+					'Normal': 'Baseline rendering with core lighting and shadow logic.',
+					'Soft Shadows + AA': 'Area-light style sampling plus anti-aliasing for cleaner edges.',
+					'Recursive Reflection': 'Secondary reflected rays add mirror-like lighting interactions.',
+					'Animation GIF': 'Frame sequence preview to show temporal consistency.'
+				};
+
+				const lightbox = document.getElementById('rt-lightbox');
+				const lightboxImage = document.getElementById('rt-lightbox-image');
+				const lightboxCounter = document.getElementById('rt-counter');
+				const lightboxCaption = document.getElementById('rt-lightbox-caption');
+				const prevButton = document.querySelector('.paginate.left');
+				const nextButton = document.querySelector('.paginate.right');
+				let activeScene = null;
+				let activeIndex = 0;
+
+				function renderLightbox() {
+					if (!activeScene) return;
+					const items = gallery[activeScene];
+					const current = items[activeIndex];
+					lightboxImage.src = current.src;
+					lightboxImage.alt = sceneLabels[activeScene] + ' - ' + current.label;
+					lightboxCounter.textContent = (activeIndex + 1) + ' / ' + items.length;
+					lightboxCaption.innerHTML = '<strong>' + sceneLabels[activeScene] + ' - ' + current.label + '</strong><br />' + stageDescriptions[current.label];
+					prevButton.setAttribute('data-state', '');
+					nextButton.setAttribute('data-state', '');
+				}
+
+				window.stepRtLightbox = function(direction) {
+					if (!activeScene) return;
+					const items = gallery[activeScene];
+					activeIndex = (activeIndex + direction + items.length) % items.length;
+					renderLightbox();
+				};
+
+				window.closeRtLightbox = function() {
+					lightbox.classList.remove('open');
+					lightbox.setAttribute('aria-hidden', 'true');
+					lightboxCounter.textContent = '';
+					activeScene = null;
+				};
+
+				function openLightbox(sceneKey) {
+					activeScene = sceneKey;
+					activeIndex = 0;
+					renderLightbox();
+					lightbox.classList.add('open');
+					lightbox.setAttribute('aria-hidden', 'false');
+				}
+
+				document.querySelectorAll('.scene-open').forEach(function(btn) {
+					btn.addEventListener('click', function() {
+						openLightbox(btn.getAttribute('data-scene'));
+					});
+				});
+
+				prevButton.addEventListener('click', function(e) {
+					e.stopPropagation();
+					if (!activeScene) return;
+					stepRtLightbox(-1);
+				});
+
+				nextButton.addEventListener('click', function(e) {
+					e.stopPropagation();
+					if (!activeScene) return;
+					stepRtLightbox(1);
+				});
+
+				document.addEventListener('keydown', function(e) {
+					if (!lightbox.classList.contains('open')) return;
+					if (e.key === 'Escape') closeRtLightbox();
+					if (e.key === 'ArrowRight') stepRtLightbox(1);
+					if (e.key === 'ArrowLeft') stepRtLightbox(-1);
+				});
+			})();
+		</script>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
