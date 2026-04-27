@@ -84,8 +84,21 @@
 				margin-bottom: 0.85rem;
 			}
 			.update-list,
-			.param-list {
+			.param-list,
+			.term-list {
 				margin-bottom: 0.95rem;
+			}
+			.term-list li {
+				margin-bottom: 0.65rem;
+			}
+			.term-list li:last-child {
+				margin-bottom: 0;
+			}
+			.term-link {
+				color: #1a1f3a;
+				text-decoration: underline;
+				text-decoration-thickness: 2px;
+				text-underline-offset: 3px;
 			}
 			.note-card {
 				background: rgba(158, 139, 255, 0.12);
@@ -234,13 +247,21 @@
 						</ul>
 					</section>
 
+					<section class="snapshot" id="term-glossary">
+						<h3>Gameplay Terms</h3>
+						<ul class="term-list">
+							<li id="term-coyote-time"><strong>Coyote Time:</strong> A short grace window after leaving a ledge where jump input still counts. Why it matters: it makes platforming feel responsive and forgiving, especially during fast or precise movement. <a class="term-link" href="https://blogs.bsu.edu/teaching-innovation/2023/11/15/coyote-time-games-teach-forgiveness-learning/" target="_blank" rel="noopener"><strong>Read more about Coyote Time</strong></a>.</li>
+							<li id="term-hive-platform"><strong>Hive Platform:</strong> A dynamic hex-tile platform system that extrudes upward from fixed underground roots as the player approaches. Why it matters: it creates reactive environments without heavy runtime movement costs.</li>
+						</ul>
+					</section>
+
 					<div class="timeline">
 						<article class="week-card">
 							<div class="week-header">
 								<h3>Week 1</h3>
 								<span class="week-chip">Coyote Time</span>
 							</div>
-							<p>This week I was assigned a smaller gameplay task while the design team discussed upcoming implementations. My director asked me to implement Coyote Time for the player jump mechanic.</p>
+							<p>This week I was assigned a smaller gameplay task while the design team discussed upcoming implementations. My director asked me to implement <a class="term-link" href="#term-coyote-time"><strong>Coyote Time</strong></a> for the player jump mechanic.</p>
 							<p>I added a short grace window after leaving a platform, allowing jump input to still register for a brief duration. This improves movement responsiveness and makes platforming feel more forgiving, especially in fast-paced or precision scenarios.</p>
 							<p>Overall, this week focused on core player-control polish while larger design decisions were still being finalized.</p>
 						</article>
